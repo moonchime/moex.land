@@ -9,6 +9,12 @@ export default {
   Specimen: {
     title: "Typography specimen",
   },
+  About: {
+    title: "About",
+  },
+  Footer: {
+    switchLocale: "中文",
+  },
   Metadata: {
     siteName: "moex.land",
     description: "(site description)",

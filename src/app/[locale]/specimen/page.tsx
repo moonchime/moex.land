@@ -13,10 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function SpecimenPage() {
   const locale = useLocale();
   return (
-    <main className="px-4 py-16">
-      <article className="mx-auto prose">
-        {locale === "zh" ? <ZhSpecimen /> : <EnSpecimen />}
-      </article>
-    </main>
+    <article className="prose max-w-none">
+      {locale === "zh" ? <ZhSpecimen /> : <EnSpecimen />}
+    </article>
   );
 }

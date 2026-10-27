@@ -9,6 +9,12 @@ export default {
   Specimen: {
     title: "排版示例",
   },
+  About: {
+    title: "关于",
+  },
+  Footer: {
+    switchLocale: "English",
+  },
   Metadata: {
     siteName: "萌域",
     description: "（站点简介）",

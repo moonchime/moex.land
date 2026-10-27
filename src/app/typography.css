@@ -2,6 +2,7 @@
 
 @layer base {
   html {
+    font-size: 106.25%;
     text-autospace: normal;
   }
 
@@ -10,8 +11,17 @@
   }
 
   :lang(zh) {
+    --measure: 40em;
     font-synthesis-style: none;
   }
+
+  :lang(en) {
+    --measure: 36em;
+  }
+}
+
+.prose:lang(zh) {
+  line-height: 1.5;
 }
 
 .prose :where(blockquote):lang(zh) {

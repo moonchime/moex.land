@@ -4,6 +4,9 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
 
+import { Footer } from "./footer";
+import { Header } from "./header";
+
 import "@/app/globals.css";
 
 export function generateStaticParams() {
@@ -26,7 +29,11 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Header />
+          <main className="py-12">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

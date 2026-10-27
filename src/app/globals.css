@@ -11,8 +11,28 @@
 
 body {
   margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(1rem, 1fr) minmax(0, var(--measure)) minmax(1rem, 1fr);
+  grid-template-areas:
+    ". header ."
+    ". main ."
+    ". footer .";
+  min-height: 100dvh;
 }
 
-a {
-  color: inherit;
+body > * {
+  grid-column: 2;
+}
+
+body > header {
+  grid-area: header;
+}
+
+body > main {
+  grid-area: main;
+}
+
+body > footer {
+  grid-area: footer;
 }

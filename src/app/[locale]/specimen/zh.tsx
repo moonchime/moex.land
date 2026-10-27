@@ -276,7 +276,7 @@ export function ZhSpecimen() {
       <pre>
         <code>
           {
-            '@plugin "@tailwindcss/typography";\n\n@layer base {\n  html {\n    text-autospace: normal;\n  }\n\n  pre {\n    text-autospace: no-autospace;\n  }\n\n  :lang(zh) {\n    font-synthesis-style: none;\n  }\n}\n\n.prose :where(blockquote):lang(zh) {\n  quotes: none;\n}\n\n.prose :where(code)::before,\n.prose :where(code)::after {\n  content: none;\n}'
+            '@plugin "@tailwindcss/typography";\n\n@layer base {\n  html {\n    font-size: 106.25%;\n    text-autospace: normal;\n  }\n\n  pre {\n    text-autospace: no-autospace;\n  }\n\n  :lang(zh) {\n    --measure: 40em;\n    font-synthesis-style: none;\n  }\n\n  :lang(en) {\n    --measure: 36em;\n  }\n}\n\n.prose:lang(zh) {\n  line-height: 1.5;\n}\n\n.prose :where(blockquote):lang(zh) {\n  quotes: none;\n}\n\n.prose :where(code)::before,\n.prose :where(code)::after {\n  content: none;\n}'
           }
         </code>
       </pre>
