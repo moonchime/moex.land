@@ -6,6 +6,8 @@ export default defineConfig({
     entrypoint: "vinext/server/fetch-handler",
     compatibilityDate: "2026-10-23",
     compatibilityFlags: ["nodejs_compat"],
+    workersDev: false,
+    previewUrls: false,
     assets: {
       htmlHandling: "none",
       notFoundHandling: "none",
