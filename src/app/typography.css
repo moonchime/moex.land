@@ -1,0 +1,21 @@
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  html {
+    text-autospace: normal;
+  }
+
+  pre {
+    text-autospace: no-autospace;
+  }
+}
+
+.prose :where(blockquote):lang(zh) {
+  font-style: normal;
+  quotes: none;
+}
+
+.prose :where(code)::before,
+.prose :where(code)::after {
+  content: none;
+}

@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "beta",
+    "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "latest",
     "@types/react": "latest",
