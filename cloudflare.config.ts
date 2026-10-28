@@ -16,6 +16,7 @@ export default defineConfig({
     env: {
       ASSETS: bindings.assets(),
       IMAGES: bindings.images(),
+      POSTS: bindings.r2({ name: "moex-land-posts" }),
     },
   }),
 });

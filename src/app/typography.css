@@ -14,11 +14,16 @@
   }
 
   :lang(zh) {
-    --measure: 40em;
     font-synthesis-style: none;
   }
 
-  :lang(en) {
+  :lang(zh),
+  :has(> main > article:lang(zh)) {
+    --measure: 40em;
+  }
+
+  :lang(en),
+  :has(> main > article:lang(en)) {
     --measure: 36em;
   }
 

@@ -14,7 +14,10 @@ export function Header() {
       <Link href="/" className={`${item} font-medium`}>
         {t("Metadata.siteName")}
       </Link>
-      <nav>
+      <nav className="flex">
+        <NavLink href="/posts" className={`${item} text-gray-500 aria-[current=page]:text-inherit`}>
+          {t("Posts.title")}
+        </NavLink>
         <NavLink href="/about" className={`${item} text-gray-500 aria-[current=page]:text-inherit`}>
           {t("About.title")}
         </NavLink>

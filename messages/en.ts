@@ -2,6 +2,14 @@ export default {
   HomePage: {
     title: "Hello world!",
   },
+  Posts: {
+    title: "Posts",
+    empty: "No posts yet.",
+  },
+  Post: {
+    untranslated:
+      "This post is only available in {lang, select, zh {Chinese} other {another language}}.",
+  },
   NotFound: {
     title: "Page not found",
     home: "Back to home",
