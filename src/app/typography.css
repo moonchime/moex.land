@@ -1,3 +1,6 @@
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource-variable/ibm-plex-sans/wght-italic.css";
+@import "@moexland/eliksiro-sans";
 @plugin "@tailwindcss/typography";
 
 @layer base {
@@ -17,6 +20,18 @@
 
   :lang(en) {
     --measure: 36em;
+  }
+
+  [lang|="zh"] {
+    font-family:
+      "Eliksiro Sans", "IBM Plex Sans Variable", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  [lang|="en"] {
+    font-family:
+      "IBM Plex Sans Variable", "Eliksiro Sans", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 }
 

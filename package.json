@@ -15,6 +15,8 @@
     "lint": "oxlint"
   },
   "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "latest",
+    "@moexland/eliksiro-sans": "latest",
     "@vinext/cloudflare": "latest",
     "next-intl": "latest",
     "react": "latest",

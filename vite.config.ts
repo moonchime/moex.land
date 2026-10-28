@@ -5,6 +5,9 @@ import vinext from "vinext";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  build: {
+    assetsInlineLimit: (file) => (file.endsWith(".woff2") ? false : undefined),
+  },
   plugins: [
     tailwindcss(),
     vinext({
