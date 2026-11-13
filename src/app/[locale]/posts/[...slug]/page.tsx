@@ -12,9 +12,9 @@ import { PostDate } from "../../post-date";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/[locale]/posts/[slug]">): Promise<Metadata> {
+}: PageProps<"/[locale]/posts/[...slug]">): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = await getPost(slug, locale);
+  const post = await getPost(slug.join("/"), locale);
   return { title: post?.meta.title, description: post?.meta.description };
 }
 
@@ -30,9 +30,9 @@ function PostLink({ href = "", children, ...props }: ComponentProps<"a">) {
   );
 }
 
-export default async function PostPage({ params }: PageProps<"/[locale]/posts/[slug]">) {
+export default async function PostPage({ params }: PageProps<"/[locale]/posts/[...slug]">) {
   const { locale, slug } = await params;
-  const post = await getPost(slug, locale);
+  const post = await getPost(slug.join("/"), locale);
   if (!post) notFound();
   const t = await getTranslations("Post");
   return (

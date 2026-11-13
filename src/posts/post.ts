@@ -23,9 +23,10 @@ export type PostMeta = {
 
 export type PostIndex = Record<string, Partial<Record<Lang, PostMeta>>>;
 
-export const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+/** One or more `/`-separated segments, so a series can keep its posts under one prefix. */
+export const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
 
-export const postKeyPattern = /^([a-z0-9-]+)\/([a-z]+)\.md$/;
+export const postKeyPattern = /^([a-z0-9-]+(?:\/[a-z0-9-]+)*)\/([a-z]+)\.md$/;
 
 export const indexKey = "index.json";
 

@@ -153,6 +153,23 @@ function isLang(lang: string): lang is Lang {
   return (routing.locales as readonly string[]).includes(lang);
 }
 
+/**
+ * Every `.md` file in the directories below `dir`, as slug (the path from `dir`) and file name.
+ * Files directly in `dir` and dot directories are left alone.
+ */
+async function findMarkdown(dir: string, slug = ""): Promise<[slug: string, name: string][]> {
+  const found: [string, string][] = [];
+  const entries = await readdir(path.join(dir, slug), { withFileTypes: true });
+  for (const entry of entries.sort((a, b) => (a.name < b.name ? -1 : 1))) {
+    if (entry.isDirectory() && !entry.name.startsWith(".")) {
+      found.push(...(await findMarkdown(dir, slug ? `${slug}/${entry.name}` : entry.name)));
+    } else if (slug && entry.isFile() && entry.name.endsWith(".md")) {
+      found.push([slug, entry.name]);
+    }
+  }
+  return found;
+}
+
 function md5(data: string | Buffer) {
   return createHash("md5").update(data).digest("hex");
 }
@@ -161,33 +178,29 @@ const [dir] = positionals;
 const files = new Map<string, { body: Buffer<ArrayBuffer>; hash: string }>();
 const index: PostIndex = {};
 let failed = false;
-const slugs = (await readdir(dir, { withFileTypes: true })).filter((entry) => entry.isDirectory());
-for (const slug of slugs.map((entry) => entry.name).sort()) {
-  for (const name of (await readdir(path.join(dir, slug))).sort()) {
-    if (!name.endsWith(".md")) continue;
-    const file = path.join(dir, slug, name);
-    const lang = path.basename(name, ".md");
-    if (!slugPattern.test(slug) || !isLang(lang)) {
-      console.error(
-        `${file}: expected <slug>/<${routing.locales.join("|")}>.md, slug in [a-z0-9-]`,
-      );
-      failed = true;
-      continue;
-    }
-    const body = await readFile(file);
-    try {
-      const { meta, messages } = renderPost(body.toString("utf8"), lang);
-      for (const { line, column, reason } of messages) {
-        console.error(`${file}:${line}:${column}: ${reason}`);
-        failed = true;
-      }
-      (index[slug] ??= {})[lang] = meta;
-    } catch (error) {
-      console.error(`${file}: ${error instanceof Error ? error.message : error}`);
-      failed = true;
-    }
-    files.set(postKey(slug, lang), { body, hash: md5(body) });
+for (const [slug, name] of await findMarkdown(dir)) {
+  const file = path.join(dir, slug, name);
+  const lang = path.basename(name, ".md");
+  if (!slugPattern.test(slug) || !isLang(lang)) {
+    console.error(
+      `${file}: expected <slug>/<${routing.locales.join("|")}>.md, slug segments in [a-z0-9-]`,
+    );
+    failed = true;
+    continue;
   }
+  const body = await readFile(file);
+  try {
+    const { meta, messages } = renderPost(body.toString("utf8"), lang);
+    for (const { line, column, reason } of messages) {
+      console.error(`${file}:${line}:${column}: ${reason}`);
+      failed = true;
+    }
+    (index[slug] ??= {})[lang] = meta;
+  } catch (error) {
+    console.error(`${file}: ${error instanceof Error ? error.message : error}`);
+    failed = true;
+  }
+  files.set(postKey(slug, lang), { body, hash: md5(body) });
 }
 if (!files.size) {
   console.error(`${dir}: no posts found`);
