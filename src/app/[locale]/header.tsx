@@ -18,6 +18,9 @@ export function Header() {
         <NavLink href="/posts" className={`${item} text-gray-500 aria-[current=page]:text-inherit`}>
           {t("Posts.title")}
         </NavLink>
+        <NavLink href="/links" className={`${item} text-gray-500 aria-[current=page]:text-inherit`}>
+          {t("Links.title")}
+        </NavLink>
         <NavLink href="/about" className={`${item} text-gray-500 aria-[current=page]:text-inherit`}>
           {t("About.title")}
         </NavLink>

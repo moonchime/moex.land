@@ -30,6 +30,14 @@ export default {
     title: "Posts",
     empty: "No posts yet.",
   },
+  Links: {
+    title: "Links",
+    description: "All the stray stars resting here.",
+    friends: "Friends",
+    seeAlso: "See also",
+    archived: "Lost contact",
+    empty: "No links yet.",
+  },
   Post: {
     untranslated:
       "This post is only available in {lang, select, zh {Chinese} other {another language}}.",

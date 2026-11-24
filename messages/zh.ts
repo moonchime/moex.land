@@ -28,6 +28,14 @@ export default {
     title: "文章",
     empty: "还没有文章。",
   },
+  Links: {
+    title: "友链",
+    description: "我在幸福地收集着漫天的繁星。",
+    friends: "友站",
+    seeAlso: "另见",
+    archived: "暂别",
+    empty: "还没有友链。",
+  },
   Post: {
     untranslated: "本文只有{lang, select, en {英文} other {其他语言}}版本。",
   },

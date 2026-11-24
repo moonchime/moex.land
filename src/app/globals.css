@@ -34,3 +34,9 @@ body > main {
 body > footer {
   grid-area: footer;
 }
+
+/* Same-cascade fallback before CSS subgrid for two-row link cards. */
+.link-card-rows {
+  grid-template-rows: auto 1fr;
+  grid-template-rows: subgrid;
+}
